@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Clientes</title>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+
+    <div>
+        <header id="cabecalho">
+            <div>
+                <h1 id="tituloPagina">CRUD De Clientes</h1>
+            </div>
+            <div id="divButoes">
+                <button class="butao" id="btnCadastrar" onclick="cadastrar()">Cadastrar</button>
+                <button class="butao" id="lListar" onclick="listarClientes()">Listar</button>
+            </div>
+
+        </header>
+
+        <div id="container">
+            <div id="display-cadastro">
+                <form id="formCadastro">
+                    <div class="inputDiv">
+                        <label for="txtNome">Nome</label><br>
+                        <input type="text" id="inputNome" class="inputCampo" placeholder="Nome" required><br><br>
+                    </div>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="email">E-mail</label><br>
+                            <input type="email" id="inputEmail" class="inputCampo" placeholder="E-mail" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="cpfcnpj">CPF | CNPJ</label><br>
+                            <input type='text' name='' id="inputCpfCnpj" placeholder="CPF ou CNPJ" class="inputCampo"
+                            onkeypress="mascaraCpfCnpj(this)" maxlength="18" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputTelefone">Telefone</label><br>
+                            <input type="text" id="inputTelefone" class="inputCampo" placeholder="Telefone" onkeypress="mascara(this, '## ####-####')" maxlength="12" required>
+                        </div>
+                    </div><br><br>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="inputCidade">Cidade</label><br>
+                            <input type="text" id="inputCidade" class="inputCampo" placeholder="Cidade" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputCep">CEP</label><br>
+                            <input type="text" id="inputCep" class="inputCampo" placeholder="Cep" onkeypress="mascara(this, '#####-###')" maxlength="9" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputEstado">Estado</label><br>
+                            <input type="text" id="inputEstado" class="inputCampo" placeholder="Estado" required>
+                        </div>
+                    </div><br><br>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="inputRua">Rua</label><br>
+                            <input type="text" id="inputRua" class="inputCampo" placeholder="Rua" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputNumero">Número</label><br>
+                            <input type="text" id="inputNumero" class="inputCampo" placeholder="Número" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputBairro">Bairro</label><br>
+                            <input type="text" id="inputBairro" class="inputCampo" placeholder="Bairro" required>
+                        </div>
+                    </div>
+                    <input type="submit" name="butao" class="butao" id="btnSalvar" value="Cadastrar">
+
+                </form>
+            </div>
+            <div id="listar-clientes">
+                <div id="divDetalhes">
+                    <div class="inputDiv">
+                        <label for="txtNome">Nome</label><br>
+                        <input type="text" id="inputDetalheNome" class="inputCampo" placeholder="Nome" required><br><br>
+                    </div>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="email">E-mail</label><br>
+                            <input type="email" id="inputDetalheEmail" class="inputCampo" placeholder="E-mail" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="cpfcnpj">CPF | CNPJ</label><br>
+                            <input type='text' name='' id="inputDetalheCpfCnpj" placeholder="CPF ou CNPJ"
+                                class="inputCampo" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputTelefone">Telefone</label><br>
+                            <input type="text" id="inputDetalheTelefone" class="inputCampo" placeholder="Telefone"
+                                required>
+                        </div>
+                    </div><br><br>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="inputCidade">Cidade</label><br>
+                            <input type="text" id="inputDetalheCidade" class="inputCampo" placeholder="Cidade" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputCep">CEP</label><br>
+                            <input type="text" id="inputDetalheCep" class="inputCampo" placeholder="Cep" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputEstado">Estado</label><br>
+                            <input type="text" id="inputDetalheEstado" class="inputCampo" placeholder="Estado" required>
+                        </div>
+                    </div><br><br>
+                    <div id="campos">
+                        <div class="inputDiv">
+                            <label for="inputRua">Rua</label><br>
+                            <input type="text" id="inputDetalheRua" class="inputCampo" placeholder="Rua" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputNumero">Número</label><br>
+                            <input type="number" id="inputDetalheNumero" class="inputCampo" placeholder="Número" required>
+                        </div>
+                        <div class="inputDiv">
+                            <label for="inputBairro">Bairro</label><br>
+                            <input type="text" id="inputDetalheBairro" class="inputCampo" placeholder="Bairro" required>
+                        </div>
+                    </div>
+                    <button class="butao btnModal" id="btnFechar">Fechar</button>
+                    <div id="btnsAlteracao">
+                        <button class="butao btnModal" id="btnCancelar">Cancelar</button>
+                        <button class="butao btnModal" id="btnEditar">Salvar Alteração</button>
+                    </div>
+           
+
+                </div>
+                <table id="tabelaClientes">
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF | CNPJ</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+
+                    </tr>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./js/home.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    font-family: 'PT Sans', sans-serif;
+}
+
+#cabecalho {
+    box-shadow: inset 0 -1.5px 0 0 gainsboro;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#divButoes {
+    width: 45%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 6%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tituloPagina {
+    margin: 20px 50px 30px 15px;
+}
+
+.butao {
+    background-color: rgb(255, 218, 218);
+    border: black 1px solid;
+    border-radius: 20px;
+    border-color: gainsboro;
+    cursor: pointer;
+    outline: none;
+}
+
+#btnCadastrar {
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 10pt;
+}
+
+
+#lListar {
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 10pt;
+}
+
+#container {
+    margin: 5px 70px 20px 55px;
+}
+
+#display-cadastro {
+    margin: 20px auto;
+    width: 50%;
+    padding: 0 10px;
+}
+/* Butão para salvar o cliente */
+#btnSalvar{
+    padding: 15px;
+    margin: 10px auto 5px auto;
+    font-size: 10pt;
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+}
+#campos {
+    display: flex;
+}
+
+.inputCampo {
+    border: black 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 13pt;
+    margin-right: 5px;
+}
+
+.inputDiv {
+    margin-left: 7px;
+}
+
+#listar-clientes {
+    width: 100%;
+    position: absolute;
+}
+
+#tabelaClientes {
+    width: 60%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    display: none;
+}
+
+tr th {
+    padding: 3px 8px;
+    border: 2px solid black;
+}
+
+tbody td {
+    border: 1px dotted gray;
+    padding: 3px 6px;
+}
+
+.btnAcao {
+    padding: 3px;
+    margin-left: 3px;
+    font-size: 10pt;
+}
+
+#divDetalhes {
+    display: none;
+    width: 40%;
+    background-color: gainsboro;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    position: absolute;
+    justify-content: center;
+    margin-left: 30%;
+}
+
+.btnModal {
+    padding: 20px;
+    margin: 10px auto 5px auto;
+    font-size: 10pt;
+}
+
+#btnFechar {
+    display: none;
+}
+#btnsAlteracao{
+    display: flex;
+}
+
+#btnEditar {
+    display: none;
+}
+#btnCancelar{
+    display: none;
+}
+
