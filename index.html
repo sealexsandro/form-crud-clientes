@@ -16,43 +16,47 @@
             <div>
                 <h1 id="tituloPagina">CRUD De Clientes</h1>
             </div>
-            <div id="divButoes">
-                <button class="butao" id="btnCadastrar" onclick="cadastrar()">Cadastrar</button>
-                <button class="butao" id="lListar" onclick="listarClientes()">Listar</button>
+            <div id="butoes-cabecalho">
+                <button class="butao btn-cabecalho" onclick="cadastrar()" id="btn-cadastrar">Cadastrar</button>
+                <button class="butao btn-cabecalho" onclick="listarClientes()">Listar</button>
             </div>
 
         </header>
 
         <div id="container">
-            <div id="display-cadastro">
+            <div id="tela-cadastro">
                 <form id="formCadastro">
                     <div class="inputDiv">
                         <label for="txtNome">Nome</label><br>
-                        <input type="text" id="inputNome" class="inputCampo" placeholder="Nome" required><br><br>
+                        <input type="text" id="inputNome" class="inputCampo" placeholder="Digite seu Nome"
+                            required><br><br>
                     </div>
                     <div id="campos">
                         <div class="inputDiv">
                             <label for="email">E-mail</label><br>
-                            <input type="email" id="inputEmail" class="inputCampo" placeholder="E-mail" required>
+                            <input type="email" id="inputEmail" class="inputCampo" placeholder="Seu e-mail aqui"
+                                required>
                         </div>
                         <div class="inputDiv">
                             <label for="cpfcnpj">CPF | CNPJ</label><br>
-                            <input type='text' name='' id="inputCpfCnpj" placeholder="CPF ou CNPJ" class="inputCampo"
-                            onkeypress="mascaraCpfCnpj(this)" maxlength="18" required>
+                            <input type='text' id="inputCpfCnpj" placeholder="Seu CPF ou CNPJ" class="inputCampo"
+                                onkeypress="mascaraCpfCnpj(this)" maxlength="18" required>
                         </div>
                         <div class="inputDiv">
                             <label for="inputTelefone">Telefone</label><br>
-                            <input type="text" id="inputTelefone" class="inputCampo" placeholder="Telefone" onkeypress="mascara(this, '## ####-####')" maxlength="12" required>
+                            <input type="text" id="inputTelefone" class="inputCampo" placeholder="Seu Telefone"
+                                onkeypress="mascara(this, '## ####-####')" maxlength="12" required>
                         </div>
                     </div><br><br>
                     <div id="campos">
                         <div class="inputDiv">
                             <label for="inputCidade">Cidade</label><br>
-                            <input type="text" id="inputCidade" class="inputCampo" placeholder="Cidade" required>
+                            <input type="text" id="inputCidade" class="inputCampo" placeholder="Sua Cidade" required>
                         </div>
                         <div class="inputDiv">
                             <label for="inputCep">CEP</label><br>
-                            <input type="text" id="inputCep" class="inputCampo" placeholder="Cep" onkeypress="mascara(this, '#####-###')" maxlength="9" required>
+                            <input type="text" id="inputCep" class="inputCampo" placeholder="Cep"
+                                onkeypress="mascara(this, '#####-###')" maxlength="9" required>
                         </div>
                         <div class="inputDiv">
                             <label for="inputEstado">Estado</label><br>
@@ -66,14 +70,14 @@
                         </div>
                         <div class="inputDiv">
                             <label for="inputNumero">Número</label><br>
-                            <input type="text" id="inputNumero" class="inputCampo" placeholder="Número" required>
+                            <input type="number" id="inputNumero" class="inputCampo" placeholder="Número" required>
                         </div>
                         <div class="inputDiv">
                             <label for="inputBairro">Bairro</label><br>
                             <input type="text" id="inputBairro" class="inputCampo" placeholder="Bairro" required>
                         </div>
                     </div>
-                    <input type="submit" name="butao" class="butao" id="btnSalvar" value="Cadastrar">
+                    <input type="submit" name="butao" class="butao" id="btnSalvar" value="Salvar Cliente">
 
                 </form>
             </div>
@@ -81,58 +85,59 @@
                 <div id="divDetalhes">
                     <div class="inputDiv">
                         <label for="txtNome">Nome</label><br>
-                        <input type="text" id="inputDetalheNome" class="inputCampo" placeholder="Nome" required><br><br>
+                        <input type="text" id="inputDetalheNome" class="inputCampo inputValueEditavel"><br><br>
                     </div>
                     <div id="campos">
                         <div class="inputDiv">
                             <label for="email">E-mail</label><br>
-                            <input type="email" id="inputDetalheEmail" class="inputCampo" placeholder="E-mail" required>
+                            <input type="email" id="inputDetalheEmail" class="inputCampo inputValueEditavel">
                         </div>
                         <div class="inputDiv">
                             <label for="cpfcnpj">CPF | CNPJ</label><br>
-                            <input type='text' name='' id="inputDetalheCpfCnpj" placeholder="CPF ou CNPJ"
-                                class="inputCampo" required>
+                            <input type='text' name='' id="inputDetalheCpfCnpj" class="inputCampo inputValueEditavel"
+                                onkeypress="mascaraCpfCnpj(this)" maxlength="18">
                         </div>
                         <div class="inputDiv">
                             <label for="inputTelefone">Telefone</label><br>
-                            <input type="text" id="inputDetalheTelefone" class="inputCampo" placeholder="Telefone"
-                                required>
+                            <input type="text" id="inputDetalheTelefone" class="inputCampo inputValueEditavel"
+                                onkeypress="mascara(this, '## ####-####')" maxlength="12">
                         </div>
                     </div><br><br>
                     <div id="campos">
                         <div class="inputDiv">
                             <label for="inputCidade">Cidade</label><br>
-                            <input type="text" id="inputDetalheCidade" class="inputCampo" placeholder="Cidade" required>
+                            <input type="text" id="inputDetalheCidade" class="inputCampo inputValueEditavel">
                         </div>
                         <div class="inputDiv">
                             <label for="inputCep">CEP</label><br>
-                            <input type="text" id="inputDetalheCep" class="inputCampo" placeholder="Cep" required>
+                            <input type="text" id="inputDetalheCep" class="inputCampo inputValueEditavel"
+                                onkeypress="mascara(this, '#####-###')" maxlength="9">
                         </div>
                         <div class="inputDiv">
                             <label for="inputEstado">Estado</label><br>
-                            <input type="text" id="inputDetalheEstado" class="inputCampo" placeholder="Estado" required>
+                            <input type="text" id="inputDetalheEstado" class="inputCampo inputValueEditavel">
                         </div>
                     </div><br><br>
                     <div id="campos">
                         <div class="inputDiv">
                             <label for="inputRua">Rua</label><br>
-                            <input type="text" id="inputDetalheRua" class="inputCampo" placeholder="Rua" required>
+                            <input type="text" id="inputDetalheRua" class="inputCampo inputValueEditavel">
                         </div>
                         <div class="inputDiv">
                             <label for="inputNumero">Número</label><br>
-                            <input type="number" id="inputDetalheNumero" class="inputCampo" placeholder="Número" required>
+                            <input type="number" id="inputDetalheNumero" class="inputCampo inputValueEditavel">
                         </div>
                         <div class="inputDiv">
                             <label for="inputBairro">Bairro</label><br>
-                            <input type="text" id="inputDetalheBairro" class="inputCampo" placeholder="Bairro" required>
+                            <input type="text" id="inputDetalheBairro" class="inputCampo inputValueEditavel">
                         </div>
                     </div>
                     <button class="butao btnModal" id="btnFechar">Fechar</button>
                     <div id="btnsAlteracao">
                         <button class="butao btnModal" id="btnCancelar">Cancelar</button>
-                        <button class="butao btnModal" id="btnEditar">Salvar Alteração</button>
+                        <button class="butao btnModal" onclick="salvarAlteracao()" id="btnEditar" >Salvar Alteração</button>
                     </div>
-           
+
 
                 </div>
                 <table id="tabelaClientes">

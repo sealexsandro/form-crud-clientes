@@ -1,9 +1,12 @@
 
 window.onload = function () {
     document.getElementById('formCadastro').addEventListener('submit', salvarCliente);
-    document.getElementById('btnFechar').addEventListener('click', (e) => {
-        document.getElementById('divDetalhes').style.display = 'none';
-    });
+    document.getElementById('btnFechar').addEventListener('click', (e) =>
+        document.getElementById('divDetalhes').style.display = 'none'
+    );
+    document.querySelector('#btnCancelar').addEventListener('click', (e) =>
+        document.querySelector('#divDetalhes').style.display = 'none'
+    );
 
 }
 function mascaraCpfCnpj(t) {
@@ -29,7 +32,7 @@ function mascara(t, mask) {
 function cadastrar() {
     document.querySelector('#tabelaClientes').style.display = 'none';
     document.querySelector('#divDetalhes').style.display = 'none';
-    document.querySelector('#display-cadastro').style.display = 'block';
+    document.querySelector('#tela-cadastro').style.display = 'block';
 }
 
 function salvarCliente() {
@@ -47,12 +50,11 @@ function salvarCliente() {
         bairro: document.querySelector('#inputBairro').value,
     }
 
-    if (localStorage.getItem('value') !== null) {
-        clientes = JSON.parse(localStorage.getItem('value'));
-    }
-
     try {
 
+        if (localStorage.getItem('value') !== null) {
+            clientes = JSON.parse(localStorage.getItem('value'));
+        }
         clientes.push(cliente);
         localStorage.setItem('value', JSON.stringify(clientes));
         alert("Cliente Salvo!");
@@ -64,7 +66,7 @@ function salvarCliente() {
 }
 
 function listarClientes() {
-    document.querySelector('#display-cadastro').style.display = 'none';
+    document.querySelector('#tela-cadastro').style.display = 'none';
     document.querySelector('#tabelaClientes').style.display = 'block';
     let tbody = document.getElementById('tbody');
     let clientes = []
@@ -85,8 +87,8 @@ function listarClientes() {
                 '<td>' + email + '</td>' +
                 '<td>' + telefone + '</td>' +
                 '<td ><button onclick="detalheCliente(' + i + ')" class="butao btnAcao">Detalhes</button>' +
-                '<button onclick="atualizarCliente(' + i + ')" class="butao btnAcao">Alterar</button>' +
-                '<button onclick="excluirCliente(' + i + ')" class="butao btnAcao">Excluir</button></td>' +
+                '<button onclick="atualizarCliente(' + i + ')" class="butao btnAcao btnAcao-Alterar">Alterar</button>' +
+                '<button onclick="excluirCliente(' + i + ')" class="butao btnAcao btnAcao-Excluir">Excluir</button></td>' +
                 '</tr>';
         }
 
@@ -125,55 +127,61 @@ function detalheCliente(index) {
     preencherInputs(cliente);
     document.querySelector('#btnEditar').style.display = 'none';
     document.querySelector('#btnCancelar').style.display = 'none';
-
     document.querySelector('#btnFechar').style.display = 'block';
-}
 
+    let elementos = document.getElementsByClassName('inputValueEditavel');
+    for (let index = 0; index < elementos.length; index++) {
+        let element = elementos[index];
+        element.readOnly = true;
+
+    }
+}
+var indexCliente;
 // Fazer alterações
 function atualizarCliente(index) {
-    clientes = JSON.parse(localStorage.getItem('value'));
-    cliente = clientes[index];
+    let clientes = JSON.parse(localStorage.getItem('value'));
+    console.log("Index : ", index)
+    console.log("clientes: ", clientes)
+    let cliente = clientes[index];
+    indexCliente = index;
     preencherInputs(cliente);
     document.querySelector('#btnFechar').style.display = 'none';
     document.querySelector('#btnEditar').style.display = 'block';
     document.querySelector('#btnCancelar').style.display = 'block';
 
-    document.querySelector('#btnEditar').addEventListener('click', function () {
-        salvarAlteracao(index);
-    });
-    document.querySelector('#btnCancelar').addEventListener('click', function () {
-        document.querySelector('#divDetalhes').style.display = 'none';
-    });
+    let elementos = document.getElementsByClassName('inputValueEditavel');
+    for (let index = 0; index < elementos.length; index++) {
+        let element = elementos[index];
+        element.readOnly = false;
+
+    }
 }
 
 // Salvar Alteração
-function salvarAlteracao(index) {
-    console.log("Chegou no salvar alteração");
-    clientes = JSON.parse(localStorage.getItem('value'));
-    cliente = clientes[index];
+function salvarAlteracao() {
+    let clientes = JSON.parse(localStorage.getItem('value'));
+    cliente = clientes[indexCliente];
 
-    clientes[index].nome = document.querySelector('#inputDetalheNome').value;
-    clientes[index].cpfCnpj = document.querySelector('#inputDetalheCpfCnpj').value;
-    clientes[index].email = document.querySelector('#inputDetalheEmail').value;
-    clientes[index].telefone = document.querySelector('#inputDetalheTelefone').value;
-    clientes[index].rua = document.querySelector('#inputDetalheRua').value;
-    clientes[index].numero = document.querySelector('#inputDetalheNumero').value;
-    clientes[index].cidade = document.querySelector('#inputDetalheCidade').value;
-    clientes[index].estado = document.querySelector('#inputDetalheEstado').value;
-    clientes[index].bairro = document.querySelector('#inputDetalheBairro').value;
+    clientes[indexCliente].nome = document.querySelector('#inputDetalheNome').value;
+    clientes[indexCliente].cpfCnpj = document.querySelector('#inputDetalheCpfCnpj').value;
+    clientes[indexCliente].email = document.querySelector('#inputDetalheEmail').value;
+    clientes[indexCliente].telefone = document.querySelector('#inputDetalheTelefone').value;
+    clientes[indexCliente].cep = document.querySelector('#inputDetalheCep').value;
+    clientes[indexCliente].rua = document.querySelector('#inputDetalheRua').value;
+    clientes[indexCliente].numero = document.querySelector('#inputDetalheNumero').value;
+    clientes[indexCliente].cidade = document.querySelector('#inputDetalheCidade').value;
+    clientes[indexCliente].estado = document.querySelector('#inputDetalheEstado').value;
+    clientes[indexCliente].bairro = document.querySelector('#inputDetalheBairro').value;
 
     try {
         localStorage.setItem('value', JSON.stringify(clientes));
-        alert("Cliente Alterado!");
         document.querySelector('#divDetalhes').style.display = 'none';
+        alert("Cliente Alterado!");
         listarClientes();
-
 
     } catch (error) {
         console.log("ERRO na Alteração: ", error)
     }
-
-
 }
 
 function excluirCliente(index) {
